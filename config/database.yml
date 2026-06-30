@@ -90,6 +90,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
     database: boxing_app_production
     username: boxing_app
     password: <%= ENV["BOXING_APP_DATABASE_PASSWORD"] %>

@@ -23,5 +23,7 @@ module BoxingApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # アセットコンパイル時にDB接続をスキップする設定
+    config.assets.initialize_on_precompile = false
   end
 end
