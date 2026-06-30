@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Boxers" %>
+
+<%= form_with(url: boxers_path, method: :get, local: true) do |form| %>
+  <%= form.text_field :search, placeholder: "ボクサー名や階級を入力..." %>
+  <%= form.submit "検索" %>
+<% end %>
+
+<h1>Boxers</h1>
+
+<div id="boxers">
+  <% @boxers.each do |boxer| %>
+    <%= render boxer %>
+    <p>
+      <%= link_to "Show this boxer", boxer %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New boxer", new_boxer_path %>

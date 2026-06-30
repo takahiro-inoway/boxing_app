@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @boxer %>
+
+<div>
+  <%= link_to "Edit this boxer", edit_boxer_path(@boxer) %> |
+  <%= link_to "Back to boxers", boxers_path %>
+
+  <%= button_to "Destroy this boxer", @boxer, method: :delete %>
+</div>
