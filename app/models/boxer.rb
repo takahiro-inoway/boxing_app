@@ -1,11 +1,11 @@
 # app/models/boxer.rb
-require 'open-uri'
-require 'nokogiri'
+require "open-uri"
+require "nokogiri"
 
 class Boxer < ApplicationRecord
   def self.search(search)
     if search
-      where('name LIKE ? OR weight_class LIKE ?', "%#{search}%", "%#{search}%")
+      where("name LIKE ? OR weight_class LIKE ?", "%#{search}%", "%#{search}%")
     else
       all
     end
@@ -17,18 +17,18 @@ class Boxer < ApplicationRecord
 
     # 検索用URL（名前をエンコード）
     url = "https://ja.wikipedia.org/wiki/#{URI.encode_www_form_component(name)}"
-    
+
     begin
       # HTMLを取得して解析
       html = URI.open(url, "User-Agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
       doc = Nokogiri::HTML(html)
-      
+
       # Wikipediaの最初の本文段落（pタグ）を取得
       # 最初の方にある中身のあるpタグを探す
       summary = ""
-      doc.css('#mw-content-text .mw-parser-output > p').each do |p|
+      doc.css("section > p").each do |p|
         if p.text.strip.present?
-          summary = p.text.gsub(/\[\d+\]/, '') # [1] などの注釈を除去
+          summary = p.text.gsub(/\[\d+\]/, "") # [1] などの注釈を除去
           break
         end
       end
